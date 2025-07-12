@@ -50,11 +50,11 @@ jobs:
             echo "===== start to build: $ARCH_NAME ====="
           
             chmod +x ./build.sh
-            ./build.sh ${{ steps.version.outputs.VERSION }} $ARCH_NAME
+            ./build.sh ${{ steps.branch-names.outputs.tag }} $ARCH_NAME
           
             while IFS= read -r IMAGE_NAME; do
-              LOCAL_TAG="${IMAGE_NAME}:${{ steps.version.outputs.VERSION }}"
-              REMOTE_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.version.outputs.VERSION }}-${SUFFIX}"
+              LOCAL_TAG="${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}"
+              REMOTE_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}-${SUFFIX}"
           
               docker tag "$LOCAL_TAG" "$REMOTE_TAG"
               docker push "$REMOTE_TAG"
@@ -68,17 +68,17 @@ jobs:
           while IFS= read -r IMAGE_NAME; do
             echo "===== start to create ${IMAGE_NAME} manifest ====="
           
-            MANIFEST_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.version.outputs.VERSION }}"
+            MANIFEST_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}"
 
             ARCH_TAGS=()
             while IFS='=' read -r ARCH_NAME SUFFIX DOCKER_ARCH; do
-              ARCH_TAGS+=("${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.version.outputs.VERSION }}-${SUFFIX}")
+              ARCH_TAGS+=("${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}-${SUFFIX}")
             done <<< "$ARCHITECTURES"
           
             docker manifest create --insecure "$MANIFEST_TAG" "${ARCH_TAGS[@]}"
           
             while IFS='=' read -r ARCH_NAME SUFFIX DOCKER_ARCH; do
-              ARCH_IMAGE_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.version.outputs.VERSION }}-${SUFFIX}"
+              ARCH_IMAGE_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}-${SUFFIX}"
               docker manifest annotate "$MANIFEST_TAG" "$ARCH_IMAGE_TAG" \
                 --os linux \
                 --arch "$DOCKER_ARCH"
