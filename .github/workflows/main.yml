@@ -52,6 +52,7 @@ jobs:
             ./build.sh ${{ steps.branch-names.outputs.tag }} $ARCH_NAME
           
             while IFS= read -r IMAGE_NAME; do
+              echo "============================ image name: [%IMAGE_NAME] ==============================="
               LOCAL_TAG="${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}"
               REMOTE_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}-${SUFFIX}"
           
