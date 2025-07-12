@@ -6,89 +6,88 @@ on:
     tags:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
-env:
-  REGISTRY: swr.cn-north-4.myhuaweicloud.com
-  REPO_NAMESPACE: huawei-css
-  ARCHITECTURES: |
-    X86=amd=amd64
-    ARM=arm=arm64
-    PPC64LE=ppc64le=ppc64le
-  IMAGES: |
-    huawei-csi
-    storage-backend-controller
-    storage-backend-sidecar
-    huawei-csi-extender
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
-
-      - name: Setup Go Environment
-        uses: actions/setup-go@v5
+      - uses: actions/setup-go@v5
         with:
           go-version: '1.24.1'
-
       - name: Get Version
         id: branch-names
         uses: tj-actions/branch-names@v8
         with:
           strip_tag_prefix: v
-
-      - name: Login to Container Registry
+      - name: Login Repo
         env:
-          REGISTRY_USER: ${{ secrets.SWR_UNAME }}
-          REGISTRY_PASSWORD: ${{ secrets.SWR_PASSWORD }}
+          SWR_UNAME: ${{ secrets.SWR_UNAME }}
+          SWR_PASSWORD: ${{ secrets.SWR_PASSWORD }}
         run: |
-          docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" $REGISTRY
-
-      - name: Build
+          docker login -u "$SWR_UNAME" -p "$SWR_PASSWORD" swr.cn-north-4.myhuaweicloud.com
+      - name: Build_X86
         run: |
-          while IFS='=' read -r ARCH_NAME SUFFIX DOCKER_ARCH; do
-            echo "===== start to build: $ARCH_NAME ====="
-          
-            chmod +x ./build.sh
-            ./build.sh ${{ steps.branch-names.outputs.tag }} $ARCH_NAME
-          
-            while IFS= read -r IMAGE_NAME; do
-              echo "============================ image name: [%IMAGE_NAME] ==============================="
-              LOCAL_TAG="${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}"
-              REMOTE_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}-${SUFFIX}"
-          
-              docker tag "$LOCAL_TAG" "$REMOTE_TAG"
-              docker push "$REMOTE_TAG"
-              echo "pushed: $REMOTE_TAG"
-            done <<< "$IMAGES"
-          
-          done <<< "$ARCHITECTURES"
-
-      - name: Create Manifests
+          chmod +x ./build.sh && ./build.sh ${{ steps.branch-names.outputs.tag }} X86
+          docker tag huawei-csi:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-amd
+          docker tag storage-backend-controller:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-amd
+          docker tag storage-backend-sidecar:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-amd
+          docker tag huawei-csi-extender:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-amd
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-amd
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-amd
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-amd
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-amd
+      - name: Build_ARM
         run: |
-          while IFS= read -r IMAGE_NAME; do
-            echo "===== start to create ${IMAGE_NAME} manifest ====="
+          chmod +x ./build.sh && ./build.sh ${{ steps.branch-names.outputs.tag }} ARM
+          docker tag huawei-csi:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-arm
+          docker tag storage-backend-controller:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-arm
+          docker tag storage-backend-sidecar:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-arm
+          docker tag huawei-csi-extender:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-arm
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-arm
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-arm
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-arm
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-arm
+      - name: Build_PPC64LE
+        run: |
+          chmod +x ./build.sh && ./build.sh ${{ steps.branch-names.outputs.tag }} PPC64LE
+          docker tag huawei-csi:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker tag storage-backend-controller:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker tag storage-backend-sidecar:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker tag huawei-csi-extender:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker push swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-ppc64le
+      - name: Create Manifest
+        run: |
+          docker manifest create --insecure swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-amd\
+          swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-arm swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-amd --os linux --arch amd64
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-arm --os linux --arch arm64
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}-ppc64le --os linux --arch ppc64le
+          docker manifest push --insecure swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:${{ steps.branch-names.outputs.tag }}
           
-            MANIFEST_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}"
+          docker manifest create --insecure swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-amd\
+          swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-arm swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-amd --os linux --arch amd64
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-arm --os linux --arch arm64
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}-ppc64le --os linux --arch ppc64le
+          docker manifest push --insecure swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:${{ steps.branch-names.outputs.tag }}
+          
+          docker manifest create --insecure swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-amd\
+          swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-arm swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-amd --os linux --arch amd64
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-arm --os linux --arch arm64
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}-ppc64le --os linux --arch ppc64le
+          docker manifest push --insecure swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:${{ steps.branch-names.outputs.tag }}
 
-            ARCH_TAGS=()
-            while IFS='=' read -r ARCH_NAME SUFFIX DOCKER_ARCH; do
-              ARCH_TAGS+=("${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}-${SUFFIX}")
-            done <<< "$ARCHITECTURES"
-          
-            docker manifest create --insecure "$MANIFEST_TAG" "${ARCH_TAGS[@]}"
-          
-            while IFS='=' read -r ARCH_NAME SUFFIX DOCKER_ARCH; do
-              ARCH_IMAGE_TAG="${REGISTRY}/${REPO_NAMESPACE}/${IMAGE_NAME}:${{ steps.branch-names.outputs.tag }}-${SUFFIX}"
-              docker manifest annotate "$MANIFEST_TAG" "$ARCH_IMAGE_TAG" \
-                --os linux \
-                --arch "$DOCKER_ARCH"
-            done <<< "$ARCHITECTURES"
-          
-            docker manifest push --insecure "$MANIFEST_TAG"
-            echo "pushed: $MANIFEST_TAG"
-          
-          done <<< "$IMAGES"
-
+          docker manifest create --insecure swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-amd\
+          swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-arm swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-ppc64le
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-amd --os linux --arch amd64
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-arm --os linux --arch arm64
+          docker manifest annotate swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}-ppc64le --os linux --arch ppc64le
+          docker manifest push --insecure swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:${{ steps.branch-names.outputs.tag }}
       - name: Create Release and Upload Release Asset
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
