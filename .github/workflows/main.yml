@@ -31,7 +31,7 @@ jobs:
         SWR_UNAME: ${{ secrets.SWR_UNAME }}
         SWR_PASSWORD: ${{ secrets.SWR_PASSWORD }}
       run: |
-          docker login -u "$SWR_UNAME" -p "$SWR_PASSWORD" swr.cn-east-3.myhuaweicloud.com
+          docker login -u "$SWR_UNAME" -p "$SWR_PASSWORD" swr.cn-north-4.myhuaweicloud.com
           docker tag huawei-csi:{{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:{{ steps.branch-names.outputs.tag }}\
           docker tag storage-backend-controller:{{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:{{ steps.branch-names.outputs.tag }}
           docker tag storage-backend-sidecar:{{ steps.branch-names.outputs.tag }} swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:{{ steps.branch-names.outputs.tag }}
