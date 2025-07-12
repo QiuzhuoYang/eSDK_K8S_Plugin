@@ -18,7 +18,6 @@ env:
     storage-backend-controller
     storage-backend-sidecar
     huawei-csi-extender
-
 jobs:
   release:
     runs-on: ubuntu-latest
