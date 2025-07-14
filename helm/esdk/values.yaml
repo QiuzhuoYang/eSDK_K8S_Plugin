@@ -1,9 +1,9 @@
 images:
   # Images provided by Huawei
-  huaweiCSIService: huawei-csi:{{csi-version}}
-  storageBackendSidecar: storage-backend-sidecar:{{csi-version}}
-  storageBackendController: storage-backend-controller:{{csi-version}}
-  huaweiCSIExtender: huawei-csi-extender:{{csi-version}}
+  huaweiCSIService: swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi:{{csi-version}}
+  storageBackendSidecar: swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-sidecar:{{csi-version}}
+  storageBackendController: swr.cn-north-4.myhuaweicloud.com/huawei-css/storage-backend-controller:{{csi-version}}
+  huaweiCSIExtender: swr.cn-north-4.myhuaweicloud.com/huawei-css/huawei-csi-extender:{{csi-version}}
 
   # CSI-related sidecar images provided by the Kubernetes community.
   # These must match the appropriate Kubernetes version.
