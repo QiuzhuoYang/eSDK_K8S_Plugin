@@ -56,6 +56,11 @@ const (
 	OceanStorV5 OceanstorVersion = "OceanStorV5"
 )
 
+var (
+	// NasStorageTypes contains all of nas storage types
+	NasStorageTypes = []string{OceanStorNas, OceanStorDtree, FusionNas, FusionDTree, OceanStorASeriesNas}
+)
+
 const (
 	// DoradoV615 is Dorado V6.1.5
 	DoradoV615 = "6.1.5"
@@ -72,6 +77,8 @@ const (
 	OceanStorSan = "oceanstor-san"
 	// OceandiskSan storage type is oceandisk-san
 	OceandiskSan = "oceandisk-san"
+	// OceanStorASeriesNas storage type is "oceanstor-a-series-nas"
+	OceanStorASeriesNas = "oceanstor-a-series-nas"
 	// FusionSan storage type is fusionstorage-san
 	FusionSan = "fusionstorage-san"
 	// FusionNas storage type is fusionstorage-nas
@@ -90,8 +97,12 @@ const (
 
 	// ProtocolNfs defines the NFS protocol type
 	ProtocolNfs = "nfs"
+	// ProtocolNfsPlus defines protocol type nfs+
+	ProtocolNfsPlus = "nfs+"
 	// ProtocolDpc defines the DPC protocol type
 	ProtocolDpc = "dpc"
+	// ProtocolDtfs defines the dtfs protocol type, which stands for DataTurbo
+	ProtocolDtfs = "dtfs"
 
 	// AllSquash is the value of all squash configured on the StorageClass
 	AllSquash = "all_squash"

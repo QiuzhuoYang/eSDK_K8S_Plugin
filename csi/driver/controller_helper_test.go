@@ -302,3 +302,20 @@ func Test_VerifySectorSize_CapacityNotMultiple(t *testing.T) {
 	assert.Error(t, err)
 	assert.ErrorContains(t, err, "is not an integer or not multiple of")
 }
+
+func Test_isSupportExpandVolume_NasSuccess(t *testing.T) {
+	// arrange
+	req := &csi.ControllerExpandVolumeRequest{VolumeId: "backend.pvc_test_volume_id"}
+	backend := &model.Backend{Storage: constants.OceanStorASeriesNas}
+
+	// action
+	res, err := isSupportExpandVolume(context.Background(), req, backend)
+
+	if err != nil {
+		t.Errorf("Test_isSupportExpandVolume_NasSuccess failed, err is %v", err)
+	}
+
+	if !res {
+		t.Errorf("Test_isSupportExpandVolume_NasSuccess failed, wantRes = %v, gotRes = %v", true, res)
+	}
+}

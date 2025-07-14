@@ -19,12 +19,8 @@ package client
 
 import (
 	"context"
-	"fmt"
 
-	pkgutils "github.com/Huawei/eSDK_K8S_Plugin/v4/pkg/utils"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage/oceanstorage/base"
-	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils"
-	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils/log"
 )
 
 // OceandiskClientInterface defines interfaces for base client operations
@@ -58,26 +54,12 @@ type OceandiskClient struct {
 	*base.RoCEClient
 	*base.SystemClient
 
-	*RestClient
-}
-
-// NewClientConfig stores the information needed to create a new oceandisk client
-type NewClientConfig struct {
-	Urls            []string
-	User            string
-	SecretName      string
-	SecretNamespace string
-	ParallelNum     string
-	BackendID       string
-	UseCert         bool
-	CertSecretMeta  string
-	Storage         string
-	Name            string
+	*base.RestClient
 }
 
 // NewClient inits a new client of oceandisk client
-func NewClient(ctx context.Context, param *NewClientConfig) (*OceandiskClient, error) {
-	restClient, err := NewRestClient(ctx, param)
+func NewClient(ctx context.Context, param *base.NewClientConfig) (*OceandiskClient, error) {
+	restClient, err := base.NewRestClient(ctx, param)
 	if err != nil {
 		return nil, err
 	}
@@ -93,77 +75,4 @@ func NewClient(ctx context.Context, param *NewClientConfig) (*OceandiskClient, e
 		SystemClient:          &base.SystemClient{RestClientInterface: restClient},
 		RestClient:            restClient,
 	}, nil
-}
-
-// ValidateLogin validates the login info
-func (cli *OceandiskClient) ValidateLogin(ctx context.Context) error {
-	var resp base.Response
-	var err error
-
-	authInfo, err := pkgutils.GetAuthInfoFromSecret(ctx, cli.SecretName, cli.SecretNamespace)
-	if err != nil {
-		return err
-	}
-
-	data := map[string]interface{}{
-		"username": authInfo.User,
-		"password": authInfo.Password,
-		"scope":    base.LocalUserType,
-	}
-	authInfo.Password = ""
-
-	cli.DeviceId = ""
-	cli.Token = ""
-	for i, url := range cli.Urls {
-		cli.Url = url + "/deviceManager/rest"
-		log.AddContext(ctx).Infof("try to login %s", cli.Url)
-		resp, err = cli.BaseCall(ctx, "POST", "/xx/sessions", data)
-		if err == nil {
-			/* Sort the login Url to the last slot of san addresses, so that
-			   if this connection error, next time will try other Url first. */
-			cli.Urls[i], cli.Urls[len(cli.Urls)-1] = cli.Urls[len(cli.Urls)-1], cli.Urls[i]
-			break
-		} else if err.Error() != base.Unconnected {
-			log.AddContext(ctx).Errorf("login %s error", cli.Url)
-			break
-		}
-
-		log.AddContext(ctx).Warningf("login %s error due to connection failure, gonna try another Url", cli.Url)
-	}
-
-	if err != nil {
-		return err
-	}
-
-	code, msg, err := utils.FormatRespErr(resp.Error)
-	if err != nil {
-		return fmt.Errorf("format login response data error: %v", err)
-	}
-
-	if code != 0 {
-		return fmt.Errorf("validate login %s failed, error code: %d, error msg: %s", cli.Url, code, msg)
-	}
-
-	cli.setDeviceIdFromRespData(ctx, resp)
-
-	log.AddContext(ctx).Infof("validate login %s success", cli.Url)
-	return nil
-}
-
-func (cli *OceandiskClient) setDeviceIdFromRespData(ctx context.Context, resp base.Response) {
-	respData, ok := resp.Data.(map[string]interface{})
-	if !ok {
-		log.AddContext(ctx).Warningf("convert response data to map[string]interface{} failed, data type: [%T]",
-			resp.Data)
-	}
-
-	cli.DeviceId, ok = utils.GetValue[string](respData, "deviceid")
-	if !ok {
-		log.AddContext(ctx).Warningf("can not convert deviceId type %T to string", respData["deviceid"])
-	}
-
-	cli.Token, ok = utils.GetValue[string](respData, "iBaseToken")
-	if !ok {
-		log.AddContext(ctx).Warningf("can not convert iBaseToken type %T to string", respData["iBaseToken"])
-	}
 }

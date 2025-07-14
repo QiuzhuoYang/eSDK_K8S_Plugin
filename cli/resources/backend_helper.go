@@ -71,6 +71,7 @@ type BackendConfiguration struct {
 	Parameters          struct {
 		Protocol   string                            `json:"protocol,omitempty" yaml:"protocol"`
 		ParentName string                            `json:"parentname,omitempty" yaml:"parentname"`
+		DeviceWWN  string                            `json:"deviceWWN,omitempty" yaml:"deviceWWN"`
 		Portals    interface{}                       `json:"portals,omitempty" yaml:"portals"`
 		Alua       map[string]map[string]interface{} `json:"ALUA,omitempty" yaml:"ALUA"`
 	} `json:"parameters,omitempty" yaml:"parameters"`
