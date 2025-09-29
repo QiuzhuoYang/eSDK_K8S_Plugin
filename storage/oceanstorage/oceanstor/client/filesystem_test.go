@@ -25,7 +25,7 @@ import (
 	"github.com/agiledragon/gomonkey/v2"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage/oceanstorage/base"
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage"
 )
 
 func TestOceanstorClient_SafeDeleteFileSystem_Success(t *testing.T) {
@@ -287,7 +287,7 @@ func TestOceanstorClient_GetFileSystemByName_DefaultVStore(t *testing.T) {
 
 	// Mock
 	mockClient := getMockClient(200, respBody)
-	mockClient.VStoreName = base.DefaultVStore
+	mockClient.VStoreName = storage.DefaultVStore
 
 	// Action
 	result, _ := mockClient.GetFileSystemByName(ctx, name)

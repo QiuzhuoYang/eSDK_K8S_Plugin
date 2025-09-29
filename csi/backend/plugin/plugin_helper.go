@@ -29,7 +29,7 @@ import (
 	xuanwuV1 "github.com/Huawei/eSDK_K8S_Plugin/v4/client/apis/xuanwu/v1"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/pkg/constants"
 	pkgUtils "github.com/Huawei/eSDK_K8S_Plugin/v4/pkg/utils"
-	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage/oceanstorage/base"
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage"
 	oceanstor "github.com/Huawei/eSDK_K8S_Plugin/v4/storage/oceanstorage/oceanstor/client"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils/log"
@@ -144,8 +144,8 @@ func formatOceanstorInitParam(config map[string]interface{}) (res *oceanstor.New
 	return
 }
 
-func formatBaseClientConfig(config map[string]interface{}) (*base.NewClientConfig, error) {
-	res := &base.NewClientConfig{}
+func formatBaseClientConfig(config map[string]interface{}) (*storage.NewClientConfig, error) {
+	res := &storage.NewClientConfig{}
 	configUrls, ok := utils.GetValue[[]interface{}](config, "urls")
 	if !ok || len(configUrls) <= 0 {
 		return nil, fmt.Errorf("urls is not provided in config, or it is invalid, config: %v", config)
@@ -219,7 +219,7 @@ func analyzePoolsCapacity(ctx context.Context, pools []map[string]interface{},
 		poolCapacityMap := map[string]interface{}{
 			string(xuanwuV1.FreeCapacity):  freeCapacity * constants.AllocationUnitBytes,
 			string(xuanwuV1.TotalCapacity): totalCapacity * constants.AllocationUnitBytes,
-			string(xuanwuV1.UsedCapacity):  totalCapacity - freeCapacity,
+			string(xuanwuV1.UsedCapacity):  (totalCapacity - freeCapacity) * constants.AllocationUnitBytes,
 		}
 		if len(vStoreQuotaMap) == 0 {
 			capacities[name] = poolCapacityMap

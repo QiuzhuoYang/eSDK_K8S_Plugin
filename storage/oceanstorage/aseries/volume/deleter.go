@@ -90,7 +90,7 @@ func (c *Deleter) deleteNfsShare() error {
 		return err
 	}
 
-	if nfsShare == nil {
+	if len(nfsShare) == 0 {
 		log.AddContext(c.ctx).Infof("NFS share %s has been deleted", c.params.sharePath())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (c *Deleter) deleteDataTurboShare() error {
 		return err
 	}
 
-	if dtShare == nil {
+	if len(dtShare) == 0 {
 		log.AddContext(c.ctx).Infof("DataTurbo share %s has been deleted", c.params.sharePath())
 		return nil
 	}
@@ -128,7 +128,7 @@ func (c *Deleter) deleteFilesystem() error {
 		return err
 	}
 
-	if fs == nil {
+	if len(fs) == 0 {
 		log.AddContext(c.ctx).Infof("Filesystem %s has been deleted", c.params.Name)
 		return nil
 	}

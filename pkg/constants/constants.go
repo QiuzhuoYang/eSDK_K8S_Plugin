@@ -88,6 +88,10 @@ const (
 	FusionFileCapacityUnit int64 = 1024
 	// FusionDTreeCapacityUnit default is 1 Bytes, it is the capacity unit for FusionStorage DTree quota
 	FusionDTreeCapacityUnit int64 = 1
+	// DmeCapacityUnitGb default is 1GB, it is the capacity unit for Dme
+	DmeCapacityUnitGb int64 = 1024 * 1024 * 1024
+	// DmeCapacityUnitMb default is 1MB, it is the capacity unit for Dme
+	DmeCapacityUnitMb int64 = 1024 * 1024
 
 	// DefaultIntBase is the default value of int base
 	DefaultIntBase = 10

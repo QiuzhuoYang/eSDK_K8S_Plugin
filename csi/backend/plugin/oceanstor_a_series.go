@@ -77,6 +77,11 @@ func (p *OceanstorASeriesPlugin) Init(ctx context.Context, config map[string]int
 		return err
 	}
 
+	if err = cli.SetSystemInfo(ctx); err != nil {
+		cli.Logout(ctx)
+		return err
+	}
+
 	if !keepLogin {
 		cli.Logout(ctx)
 	}
@@ -279,6 +284,7 @@ func (p *OceanstorASeriesPlugin) getBackendSpecifications() map[string]interface
 		"LocalDeviceSN": p.cli.GetDeviceSN(),
 		"VStoreID":      p.cli.GetvStoreID(),
 		"VStoreName":    p.cli.GetvStoreName(),
+		"DeviceWWN":     p.cli.GetDeviceWWN(),
 	}
 	return specifications
 }

@@ -25,7 +25,7 @@ import (
 
 	"github.com/agiledragon/gomonkey/v2"
 
-	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage/oceanstorage/base"
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage/oceanstorage/oceandisk/client"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils/log"
 )
@@ -44,7 +44,7 @@ func TestMain(m *testing.M) {
 func TestSAN_Create_Success(t *testing.T) {
 	// arrange
 	ctx := context.Background()
-	clientConfig := base.NewClientConfig{
+	clientConfig := storage.NewClientConfig{
 		Urls:            []string{"127.0.0.1"},
 		User:            "testUser",
 		SecretName:      "testSecretName",
@@ -91,7 +91,7 @@ func TestSAN_Create_Success(t *testing.T) {
 func TestSAN_Create_PrepareFailed(t *testing.T) {
 	// arrange
 	ctx := context.Background()
-	clientConfig := base.NewClientConfig{
+	clientConfig := storage.NewClientConfig{
 		Urls:            []string{"127.0.0.1"},
 		User:            "testUser",
 		SecretName:      "testSecretName",
@@ -134,7 +134,7 @@ func TestSAN_Create_PrepareFailed(t *testing.T) {
 func TestSAN_deleteNamespace_success(t *testing.T) {
 	// arrange
 	ctx := context.Background()
-	clientConfig := base.NewClientConfig{
+	clientConfig := storage.NewClientConfig{
 		Urls:            []string{"127.0.0.1"},
 		User:            "testUser",
 		SecretName:      "testSecretName",
@@ -170,7 +170,7 @@ func TestSAN_deleteNamespace_success(t *testing.T) {
 func TestSAN_expandLocalNamespace_poolNotExist(t *testing.T) {
 	// arrange
 	ctx := context.Background()
-	clientConfig := base.NewClientConfig{
+	clientConfig := storage.NewClientConfig{
 		Urls:            []string{"127.0.0.1"},
 		User:            "testUser",
 		SecretName:      "testSecretName",

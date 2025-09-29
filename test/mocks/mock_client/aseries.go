@@ -71,11 +71,13 @@ func (m *MockOceanASeriesClientInterface) ActivateQos(ctx context.Context, qosID
 // ActivateQos indicates an expected call of ActivateQos.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) ActivateQos(ctx, qosID, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ActivateQos", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).ActivateQos), ctx, qosID, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ActivateQos",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).ActivateQos), ctx, qosID, vStoreID)
 }
 
 // AddDataTurboShareUser mocks base method.
-func (m *MockOceanASeriesClientInterface) AddDataTurboShareUser(ctx context.Context, params *client.AddDataTurboShareUserParams) error {
+func (m *MockOceanASeriesClientInterface) AddDataTurboShareUser(ctx context.Context,
+	params *client.AddDataTurboShareUserParams) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AddDataTurboShareUser", ctx, params)
 	ret0, _ := ret[0].(error)
@@ -85,11 +87,13 @@ func (m *MockOceanASeriesClientInterface) AddDataTurboShareUser(ctx context.Cont
 // AddDataTurboShareUser indicates an expected call of AddDataTurboShareUser.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) AddDataTurboShareUser(ctx, params any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddDataTurboShareUser", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).AddDataTurboShareUser), ctx, params)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddDataTurboShareUser",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).AddDataTurboShareUser), ctx, params)
 }
 
 // AllowNfsShareAccess mocks base method.
-func (m *MockOceanASeriesClientInterface) AllowNfsShareAccess(ctx context.Context, req *base.AllowNfsShareAccessRequest) error {
+func (m *MockOceanASeriesClientInterface) AllowNfsShareAccess(ctx context.Context,
+	req *base.AllowNfsShareAccessRequest) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AllowNfsShareAccess", ctx, req)
 	ret0, _ := ret[0].(error)
@@ -99,11 +103,13 @@ func (m *MockOceanASeriesClientInterface) AllowNfsShareAccess(ctx context.Contex
 // AllowNfsShareAccess indicates an expected call of AllowNfsShareAccess.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) AllowNfsShareAccess(ctx, req any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AllowNfsShareAccess", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).AllowNfsShareAccess), ctx, req)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AllowNfsShareAccess",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).AllowNfsShareAccess), ctx, req)
 }
 
 // BaseCall mocks base method.
-func (m *MockOceanASeriesClientInterface) BaseCall(ctx context.Context, method, url string, data map[string]any) (base.Response, error) {
+func (m *MockOceanASeriesClientInterface) BaseCall(ctx context.Context, method, url string,
+	data map[string]any) (base.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "BaseCall", ctx, method, url, data)
 	ret0, _ := ret[0].(base.Response)
@@ -114,11 +120,13 @@ func (m *MockOceanASeriesClientInterface) BaseCall(ctx context.Context, method, 
 // BaseCall indicates an expected call of BaseCall.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) BaseCall(ctx, method, url, data any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "BaseCall", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).BaseCall), ctx, method, url, data)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "BaseCall",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).BaseCall), ctx, method, url, data)
 }
 
 // Call mocks base method.
-func (m *MockOceanASeriesClientInterface) Call(ctx context.Context, method, url string, data map[string]any) (base.Response, error) {
+func (m *MockOceanASeriesClientInterface) Call(ctx context.Context, method, url string,
+	data map[string]any) (base.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Call", ctx, method, url, data)
 	ret0, _ := ret[0].(base.Response)
@@ -129,11 +137,13 @@ func (m *MockOceanASeriesClientInterface) Call(ctx context.Context, method, url 
 // Call indicates an expected call of Call.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) Call(ctx, method, url, data any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Call", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Call), ctx, method, url, data)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Call",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Call), ctx, method, url, data)
 }
 
 // CreateDataTurboShare mocks base method.
-func (m *MockOceanASeriesClientInterface) CreateDataTurboShare(ctx context.Context, params *client.CreateDataTurboShareParams) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) CreateDataTurboShare(ctx context.Context,
+	params *client.CreateDataTurboShareParams) (map[string]any, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateDataTurboShare", ctx, params)
 	ret0, _ := ret[0].(map[string]any)
@@ -144,11 +154,13 @@ func (m *MockOceanASeriesClientInterface) CreateDataTurboShare(ctx context.Conte
 // CreateDataTurboShare indicates an expected call of CreateDataTurboShare.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) CreateDataTurboShare(ctx, params any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateDataTurboShare", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).CreateDataTurboShare), ctx, params)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateDataTurboShare",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).CreateDataTurboShare), ctx, params)
 }
 
 // CreateFileSystem mocks base method.
-func (m *MockOceanASeriesClientInterface) CreateFileSystem(ctx context.Context, params *client.CreateFilesystemParams, advancedOptions map[string]any) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) CreateFileSystem(ctx context.Context, params *client.CreateFilesystemParams,
+	advancedOptions map[string]any) (map[string]any, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateFileSystem", ctx, params, advancedOptions)
 	ret0, _ := ret[0].(map[string]any)
@@ -159,11 +171,13 @@ func (m *MockOceanASeriesClientInterface) CreateFileSystem(ctx context.Context, 
 // CreateFileSystem indicates an expected call of CreateFileSystem.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) CreateFileSystem(ctx, params, advancedOptions any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateFileSystem", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).CreateFileSystem), ctx, params, advancedOptions)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateFileSystem",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).CreateFileSystem), ctx, params, advancedOptions)
 }
 
 // CreateNfsShare mocks base method.
-func (m *MockOceanASeriesClientInterface) CreateNfsShare(ctx context.Context, params map[string]any) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) CreateNfsShare(ctx context.Context, params map[string]any) (map[string]any,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateNfsShare", ctx, params)
 	ret0, _ := ret[0].(map[string]any)
@@ -174,11 +188,13 @@ func (m *MockOceanASeriesClientInterface) CreateNfsShare(ctx context.Context, pa
 // CreateNfsShare indicates an expected call of CreateNfsShare.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) CreateNfsShare(ctx, params any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateNfsShare", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).CreateNfsShare), ctx, params)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateNfsShare",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).CreateNfsShare), ctx, params)
 }
 
 // CreateQos mocks base method.
-func (m *MockOceanASeriesClientInterface) CreateQos(ctx context.Context, args base.CreateQoSArgs) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) CreateQos(ctx context.Context, args base.CreateQoSArgs) (map[string]any,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateQos", ctx, args)
 	ret0, _ := ret[0].(map[string]any)
@@ -189,7 +205,8 @@ func (m *MockOceanASeriesClientInterface) CreateQos(ctx context.Context, args ba
 // CreateQos indicates an expected call of CreateQos.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) CreateQos(ctx, args any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateQos", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).CreateQos), ctx, args)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateQos",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).CreateQos), ctx, args)
 }
 
 // DeactivateQos mocks base method.
@@ -203,11 +220,13 @@ func (m *MockOceanASeriesClientInterface) DeactivateQos(ctx context.Context, qos
 // DeactivateQos indicates an expected call of DeactivateQos.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) DeactivateQos(ctx, qosID, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeactivateQos", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeactivateQos), ctx, qosID, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeactivateQos",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeactivateQos), ctx, qosID, vStoreID)
 }
 
 // Delete mocks base method.
-func (m *MockOceanASeriesClientInterface) Delete(ctx context.Context, url string, data map[string]any) (base.Response, error) {
+func (m *MockOceanASeriesClientInterface) Delete(ctx context.Context, url string, data map[string]any) (base.Response,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", ctx, url, data)
 	ret0, _ := ret[0].(base.Response)
@@ -218,7 +237,8 @@ func (m *MockOceanASeriesClientInterface) Delete(ctx context.Context, url string
 // Delete indicates an expected call of Delete.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) Delete(ctx, url, data any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Delete), ctx, url, data)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Delete), ctx, url, data)
 }
 
 // DeleteDataTurboShare mocks base method.
@@ -232,7 +252,8 @@ func (m *MockOceanASeriesClientInterface) DeleteDataTurboShare(ctx context.Conte
 // DeleteDataTurboShare indicates an expected call of DeleteDataTurboShare.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) DeleteDataTurboShare(ctx, id, vstoreId any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteDataTurboShare", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteDataTurboShare), ctx, id, vstoreId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteDataTurboShare",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteDataTurboShare), ctx, id, vstoreId)
 }
 
 // DeleteFileSystem mocks base method.
@@ -246,7 +267,8 @@ func (m *MockOceanASeriesClientInterface) DeleteFileSystem(ctx context.Context, 
 // DeleteFileSystem indicates an expected call of DeleteFileSystem.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) DeleteFileSystem(ctx, params any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteFileSystem", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteFileSystem), ctx, params)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteFileSystem",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteFileSystem), ctx, params)
 }
 
 // DeleteNfsShare mocks base method.
@@ -260,7 +282,8 @@ func (m *MockOceanASeriesClientInterface) DeleteNfsShare(ctx context.Context, id
 // DeleteNfsShare indicates an expected call of DeleteNfsShare.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) DeleteNfsShare(ctx, id, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteNfsShare", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteNfsShare), ctx, id, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteNfsShare",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteNfsShare), ctx, id, vStoreID)
 }
 
 // DeleteNfsShareAccess mocks base method.
@@ -274,7 +297,8 @@ func (m *MockOceanASeriesClientInterface) DeleteNfsShareAccess(ctx context.Conte
 // DeleteNfsShareAccess indicates an expected call of DeleteNfsShareAccess.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) DeleteNfsShareAccess(ctx, accessID, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteNfsShareAccess", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteNfsShareAccess), ctx, accessID, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteNfsShareAccess",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteNfsShareAccess), ctx, accessID, vStoreID)
 }
 
 // DeleteQos mocks base method.
@@ -288,7 +312,8 @@ func (m *MockOceanASeriesClientInterface) DeleteQos(ctx context.Context, qosID, 
 // DeleteQos indicates an expected call of DeleteQos.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) DeleteQos(ctx, qosID, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteQos", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteQos), ctx, qosID, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteQos",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).DeleteQos), ctx, qosID, vStoreID)
 }
 
 // ExtendFileSystem mocks base method.
@@ -302,11 +327,13 @@ func (m *MockOceanASeriesClientInterface) ExtendFileSystem(ctx context.Context, 
 // ExtendFileSystem indicates an expected call of ExtendFileSystem.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) ExtendFileSystem(ctx, fsID, newCapacity any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ExtendFileSystem", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).ExtendFileSystem), ctx, fsID, newCapacity)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ExtendFileSystem",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).ExtendFileSystem), ctx, fsID, newCapacity)
 }
 
 // Get mocks base method.
-func (m *MockOceanASeriesClientInterface) Get(ctx context.Context, url string, data map[string]any) (base.Response, error) {
+func (m *MockOceanASeriesClientInterface) Get(ctx context.Context, url string, data map[string]any) (base.Response,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Get", ctx, url, data)
 	ret0, _ := ret[0].(base.Response)
@@ -317,7 +344,8 @@ func (m *MockOceanASeriesClientInterface) Get(ctx context.Context, url string, d
 // Get indicates an expected call of Get.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) Get(ctx, url, data any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Get), ctx, url, data)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Get), ctx, url, data)
 }
 
 // GetAllPools mocks base method.
@@ -332,7 +360,8 @@ func (m *MockOceanASeriesClientInterface) GetAllPools(ctx context.Context) (map[
 // GetAllPools indicates an expected call of GetAllPools.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetAllPools(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllPools", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetAllPools), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllPools",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetAllPools), ctx)
 }
 
 // GetAllQos mocks base method.
@@ -347,7 +376,8 @@ func (m *MockOceanASeriesClientInterface) GetAllQos(ctx context.Context) ([]map[
 // GetAllQos indicates an expected call of GetAllQos.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetAllQos(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllQos", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetAllQos), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllQos",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetAllQos), ctx)
 }
 
 // GetAllRemoteDevices mocks base method.
@@ -362,11 +392,13 @@ func (m *MockOceanASeriesClientInterface) GetAllRemoteDevices(ctx context.Contex
 // GetAllRemoteDevices indicates an expected call of GetAllRemoteDevices.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetAllRemoteDevices(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllRemoteDevices", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetAllRemoteDevices), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllRemoteDevices",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetAllRemoteDevices), ctx)
 }
 
 // GetApplicationTypeByName mocks base method.
-func (m *MockOceanASeriesClientInterface) GetApplicationTypeByName(ctx context.Context, appType string) (string, error) {
+func (m *MockOceanASeriesClientInterface) GetApplicationTypeByName(ctx context.Context, appType string) (string,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetApplicationTypeByName", ctx, appType)
 	ret0, _ := ret[0].(string)
@@ -377,7 +409,8 @@ func (m *MockOceanASeriesClientInterface) GetApplicationTypeByName(ctx context.C
 // GetApplicationTypeByName indicates an expected call of GetApplicationTypeByName.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetApplicationTypeByName(ctx, appType any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetApplicationTypeByName", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetApplicationTypeByName), ctx, appType)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetApplicationTypeByName",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetApplicationTypeByName), ctx, appType)
 }
 
 // GetBackendID mocks base method.
@@ -391,11 +424,13 @@ func (m *MockOceanASeriesClientInterface) GetBackendID() string {
 // GetBackendID indicates an expected call of GetBackendID.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetBackendID() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBackendID", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetBackendID))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBackendID",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetBackendID))
 }
 
 // GetDataTurboShareByPath mocks base method.
-func (m *MockOceanASeriesClientInterface) GetDataTurboShareByPath(ctx context.Context, path, vstoreId string) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) GetDataTurboShareByPath(ctx context.Context,
+	path, vstoreId string) (map[string]any, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetDataTurboShareByPath", ctx, path, vstoreId)
 	ret0, _ := ret[0].(map[string]any)
@@ -406,7 +441,8 @@ func (m *MockOceanASeriesClientInterface) GetDataTurboShareByPath(ctx context.Co
 // GetDataTurboShareByPath indicates an expected call of GetDataTurboShareByPath.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetDataTurboShareByPath(ctx, path, vstoreId any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDataTurboShareByPath", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetDataTurboShareByPath), ctx, path, vstoreId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDataTurboShareByPath",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetDataTurboShareByPath), ctx, path, vstoreId)
 }
 
 // GetDeviceSN mocks base method.
@@ -420,7 +456,23 @@ func (m *MockOceanASeriesClientInterface) GetDeviceSN() string {
 // GetDeviceSN indicates an expected call of GetDeviceSN.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetDeviceSN() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDeviceSN", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetDeviceSN))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDeviceSN",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetDeviceSN))
+}
+
+// GetDeviceWWN mocks base method.
+func (m *MockOceanASeriesClientInterface) GetDeviceWWN() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetDeviceWWN")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetDeviceWWN indicates an expected call of GetDeviceWWN.
+func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetDeviceWWN() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDeviceWWN",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetDeviceWWN))
 }
 
 // GetFileSystemByID mocks base method.
@@ -435,11 +487,13 @@ func (m *MockOceanASeriesClientInterface) GetFileSystemByID(ctx context.Context,
 // GetFileSystemByID indicates an expected call of GetFileSystemByID.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetFileSystemByID(ctx, id any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFileSystemByID", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetFileSystemByID), ctx, id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFileSystemByID",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetFileSystemByID), ctx, id)
 }
 
 // GetFileSystemByName mocks base method.
-func (m *MockOceanASeriesClientInterface) GetFileSystemByName(ctx context.Context, name, vstoreId string) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) GetFileSystemByName(ctx context.Context,
+	name, vstoreId string) (map[string]any, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetFileSystemByName", ctx, name, vstoreId)
 	ret0, _ := ret[0].(map[string]any)
@@ -450,7 +504,8 @@ func (m *MockOceanASeriesClientInterface) GetFileSystemByName(ctx context.Contex
 // GetFileSystemByName indicates an expected call of GetFileSystemByName.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetFileSystemByName(ctx, name, vstoreId any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFileSystemByName", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetFileSystemByName), ctx, name, vstoreId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFileSystemByName",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetFileSystemByName), ctx, name, vstoreId)
 }
 
 // GetLicenseFeature mocks base method.
@@ -465,7 +520,8 @@ func (m *MockOceanASeriesClientInterface) GetLicenseFeature(ctx context.Context)
 // GetLicenseFeature indicates an expected call of GetLicenseFeature.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetLicenseFeature(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetLicenseFeature", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetLicenseFeature), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetLicenseFeature",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetLicenseFeature), ctx)
 }
 
 // GetNFSServiceSetting mocks base method.
@@ -480,11 +536,13 @@ func (m *MockOceanASeriesClientInterface) GetNFSServiceSetting(ctx context.Conte
 // GetNFSServiceSetting indicates an expected call of GetNFSServiceSetting.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetNFSServiceSetting(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNFSServiceSetting", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNFSServiceSetting), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNFSServiceSetting",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNFSServiceSetting), ctx)
 }
 
 // GetNfsShareAccess mocks base method.
-func (m *MockOceanASeriesClientInterface) GetNfsShareAccess(ctx context.Context, parentID, name, vStoreID string) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) GetNfsShareAccess(ctx context.Context,
+	parentID, name, vStoreID string) (map[string]any, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetNfsShareAccess", ctx, parentID, name, vStoreID)
 	ret0, _ := ret[0].(map[string]any)
@@ -495,11 +553,13 @@ func (m *MockOceanASeriesClientInterface) GetNfsShareAccess(ctx context.Context,
 // GetNfsShareAccess indicates an expected call of GetNfsShareAccess.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetNfsShareAccess(ctx, parentID, name, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNfsShareAccess", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNfsShareAccess), ctx, parentID, name, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNfsShareAccess",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNfsShareAccess), ctx, parentID, name, vStoreID)
 }
 
 // GetNfsShareAccessCount mocks base method.
-func (m *MockOceanASeriesClientInterface) GetNfsShareAccessCount(ctx context.Context, parentID, vStoreID string) (int64, error) {
+func (m *MockOceanASeriesClientInterface) GetNfsShareAccessCount(ctx context.Context, parentID, vStoreID string) (int64,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetNfsShareAccessCount", ctx, parentID, vStoreID)
 	ret0, _ := ret[0].(int64)
@@ -510,11 +570,13 @@ func (m *MockOceanASeriesClientInterface) GetNfsShareAccessCount(ctx context.Con
 // GetNfsShareAccessCount indicates an expected call of GetNfsShareAccessCount.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetNfsShareAccessCount(ctx, parentID, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNfsShareAccessCount", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNfsShareAccessCount), ctx, parentID, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNfsShareAccessCount",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNfsShareAccessCount), ctx, parentID, vStoreID)
 }
 
 // GetNfsShareAccessRange mocks base method.
-func (m *MockOceanASeriesClientInterface) GetNfsShareAccessRange(ctx context.Context, parentID, vStoreID string, startRange, endRange int64) ([]any, error) {
+func (m *MockOceanASeriesClientInterface) GetNfsShareAccessRange(ctx context.Context, parentID, vStoreID string,
+	startRange, endRange int64) ([]any, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetNfsShareAccessRange", ctx, parentID, vStoreID, startRange, endRange)
 	ret0, _ := ret[0].([]any)
@@ -525,11 +587,14 @@ func (m *MockOceanASeriesClientInterface) GetNfsShareAccessRange(ctx context.Con
 // GetNfsShareAccessRange indicates an expected call of GetNfsShareAccessRange.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetNfsShareAccessRange(ctx, parentID, vStoreID, startRange, endRange any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNfsShareAccessRange", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNfsShareAccessRange), ctx, parentID, vStoreID, startRange, endRange)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNfsShareAccessRange",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNfsShareAccessRange), ctx, parentID, vStoreID,
+		startRange, endRange)
 }
 
 // GetNfsShareByPath mocks base method.
-func (m *MockOceanASeriesClientInterface) GetNfsShareByPath(ctx context.Context, path, vStoreID string) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) GetNfsShareByPath(ctx context.Context, path, vStoreID string) (map[string]any,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetNfsShareByPath", ctx, path, vStoreID)
 	ret0, _ := ret[0].(map[string]any)
@@ -540,7 +605,8 @@ func (m *MockOceanASeriesClientInterface) GetNfsShareByPath(ctx context.Context,
 // GetNfsShareByPath indicates an expected call of GetNfsShareByPath.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetNfsShareByPath(ctx, path, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNfsShareByPath", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNfsShareByPath), ctx, path, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNfsShareByPath",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetNfsShareByPath), ctx, path, vStoreID)
 }
 
 // GetPoolByName mocks base method.
@@ -555,11 +621,13 @@ func (m *MockOceanASeriesClientInterface) GetPoolByName(ctx context.Context, nam
 // GetPoolByName indicates an expected call of GetPoolByName.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetPoolByName(ctx, name any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPoolByName", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetPoolByName), ctx, name)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPoolByName",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetPoolByName), ctx, name)
 }
 
 // GetQosByID mocks base method.
-func (m *MockOceanASeriesClientInterface) GetQosByID(ctx context.Context, qosID, vStoreID string) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) GetQosByID(ctx context.Context, qosID, vStoreID string) (map[string]any,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetQosByID", ctx, qosID, vStoreID)
 	ret0, _ := ret[0].(map[string]any)
@@ -570,11 +638,13 @@ func (m *MockOceanASeriesClientInterface) GetQosByID(ctx context.Context, qosID,
 // GetQosByID indicates an expected call of GetQosByID.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetQosByID(ctx, qosID, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQosByID", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetQosByID), ctx, qosID, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQosByID",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetQosByID), ctx, qosID, vStoreID)
 }
 
 // GetQosByName mocks base method.
-func (m *MockOceanASeriesClientInterface) GetQosByName(ctx context.Context, name, vStoreID string) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) GetQosByName(ctx context.Context, name, vStoreID string) (map[string]any,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetQosByName", ctx, name, vStoreID)
 	ret0, _ := ret[0].(map[string]any)
@@ -585,7 +655,8 @@ func (m *MockOceanASeriesClientInterface) GetQosByName(ctx context.Context, name
 // GetQosByName indicates an expected call of GetQosByName.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetQosByName(ctx, name, vStoreID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQosByName", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetQosByName), ctx, name, vStoreID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQosByName",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetQosByName), ctx, name, vStoreID)
 }
 
 // GetRemoteDeviceBySN mocks base method.
@@ -600,11 +671,13 @@ func (m *MockOceanASeriesClientInterface) GetRemoteDeviceBySN(ctx context.Contex
 // GetRemoteDeviceBySN indicates an expected call of GetRemoteDeviceBySN.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetRemoteDeviceBySN(ctx, sn any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRemoteDeviceBySN", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetRemoteDeviceBySN), ctx, sn)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRemoteDeviceBySN",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetRemoteDeviceBySN), ctx, sn)
 }
 
 // GetRequest mocks base method.
-func (m *MockOceanASeriesClientInterface) GetRequest(ctx context.Context, method, url string, data map[string]any) (*http.Request, error) {
+func (m *MockOceanASeriesClientInterface) GetRequest(ctx context.Context, method, url string,
+	data map[string]any) (*http.Request, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetRequest", ctx, method, url, data)
 	ret0, _ := ret[0].(*http.Request)
@@ -615,21 +688,8 @@ func (m *MockOceanASeriesClientInterface) GetRequest(ctx context.Context, method
 // GetRequest indicates an expected call of GetRequest.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetRequest(ctx, method, url, data any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRequest", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetRequest), ctx, method, url, data)
-}
-
-// GetStorageVersion mocks base method.
-func (m *MockOceanASeriesClientInterface) GetStorageVersion() string {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetStorageVersion")
-	ret0, _ := ret[0].(string)
-	return ret0
-}
-
-// GetStorageVersion indicates an expected call of GetStorageVersion.
-func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetStorageVersion() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetStorageVersion", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetStorageVersion))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRequest",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetRequest), ctx, method, url, data)
 }
 
 // GetSystem mocks base method.
@@ -644,7 +704,8 @@ func (m *MockOceanASeriesClientInterface) GetSystem(ctx context.Context) (map[st
 // GetSystem indicates an expected call of GetSystem.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetSystem(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSystem", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetSystem), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSystem",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetSystem), ctx)
 }
 
 // GetSystemUTCTime mocks base method.
@@ -659,7 +720,8 @@ func (m *MockOceanASeriesClientInterface) GetSystemUTCTime(ctx context.Context) 
 // GetSystemUTCTime indicates an expected call of GetSystemUTCTime.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetSystemUTCTime(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSystemUTCTime", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetSystemUTCTime), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSystemUTCTime",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetSystemUTCTime), ctx)
 }
 
 // GetVStorePairs mocks base method.
@@ -674,7 +736,8 @@ func (m *MockOceanASeriesClientInterface) GetVStorePairs(ctx context.Context) ([
 // GetVStorePairs indicates an expected call of GetVStorePairs.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetVStorePairs(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetVStorePairs", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetVStorePairs), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetVStorePairs",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetVStorePairs), ctx)
 }
 
 // GetvStoreByName mocks base method.
@@ -689,7 +752,8 @@ func (m *MockOceanASeriesClientInterface) GetvStoreByName(ctx context.Context, n
 // GetvStoreByName indicates an expected call of GetvStoreByName.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetvStoreByName(ctx, name any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetvStoreByName", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetvStoreByName), ctx, name)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetvStoreByName",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetvStoreByName), ctx, name)
 }
 
 // GetvStoreID mocks base method.
@@ -703,7 +767,8 @@ func (m *MockOceanASeriesClientInterface) GetvStoreID() string {
 // GetvStoreID indicates an expected call of GetvStoreID.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetvStoreID() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetvStoreID", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetvStoreID))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetvStoreID",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetvStoreID))
 }
 
 // GetvStoreName mocks base method.
@@ -717,11 +782,13 @@ func (m *MockOceanASeriesClientInterface) GetvStoreName() string {
 // GetvStoreName indicates an expected call of GetvStoreName.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetvStoreName() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetvStoreName", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetvStoreName))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetvStoreName",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetvStoreName))
 }
 
 // GetvStorePairByID mocks base method.
-func (m *MockOceanASeriesClientInterface) GetvStorePairByID(ctx context.Context, pairID string) (map[string]any, error) {
+func (m *MockOceanASeriesClientInterface) GetvStorePairByID(ctx context.Context, pairID string) (map[string]any,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetvStorePairByID", ctx, pairID)
 	ret0, _ := ret[0].(map[string]any)
@@ -732,7 +799,8 @@ func (m *MockOceanASeriesClientInterface) GetvStorePairByID(ctx context.Context,
 // GetvStorePairByID indicates an expected call of GetvStorePairByID.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) GetvStorePairByID(ctx, pairID any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetvStorePairByID", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetvStorePairByID), ctx, pairID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetvStorePairByID",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).GetvStorePairByID), ctx, pairID)
 }
 
 // Login mocks base method.
@@ -746,7 +814,8 @@ func (m *MockOceanASeriesClientInterface) Login(ctx context.Context) error {
 // Login indicates an expected call of Login.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) Login(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Login", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Login), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Login",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Login), ctx)
 }
 
 // Logout mocks base method.
@@ -758,11 +827,13 @@ func (m *MockOceanASeriesClientInterface) Logout(ctx context.Context) {
 // Logout indicates an expected call of Logout.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) Logout(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Logout", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Logout), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Logout",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Logout), ctx)
 }
 
 // Post mocks base method.
-func (m *MockOceanASeriesClientInterface) Post(ctx context.Context, url string, data map[string]any) (base.Response, error) {
+func (m *MockOceanASeriesClientInterface) Post(ctx context.Context, url string, data map[string]any) (base.Response,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Post", ctx, url, data)
 	ret0, _ := ret[0].(base.Response)
@@ -773,11 +844,13 @@ func (m *MockOceanASeriesClientInterface) Post(ctx context.Context, url string, 
 // Post indicates an expected call of Post.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) Post(ctx, url, data any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Post", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Post), ctx, url, data)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Post",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Post), ctx, url, data)
 }
 
 // Put mocks base method.
-func (m *MockOceanASeriesClientInterface) Put(ctx context.Context, url string, data map[string]any) (base.Response, error) {
+func (m *MockOceanASeriesClientInterface) Put(ctx context.Context, url string, data map[string]any) (base.Response,
+	error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Put", ctx, url, data)
 	ret0, _ := ret[0].(base.Response)
@@ -788,7 +861,8 @@ func (m *MockOceanASeriesClientInterface) Put(ctx context.Context, url string, d
 // Put indicates an expected call of Put.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) Put(ctx, url, data any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Put", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Put), ctx, url, data)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Put",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).Put), ctx, url, data)
 }
 
 // ReLogin mocks base method.
@@ -802,7 +876,8 @@ func (m *MockOceanASeriesClientInterface) ReLogin(ctx context.Context) error {
 // ReLogin indicates an expected call of ReLogin.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) ReLogin(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReLogin", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).ReLogin), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReLogin",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).ReLogin), ctx)
 }
 
 // RemoveDataTurboShareUser mocks base method.
@@ -816,11 +891,28 @@ func (m *MockOceanASeriesClientInterface) RemoveDataTurboShareUser(ctx context.C
 // RemoveDataTurboShareUser indicates an expected call of RemoveDataTurboShareUser.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) RemoveDataTurboShareUser(ctx, objID, vstoreId any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveDataTurboShareUser", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).RemoveDataTurboShareUser), ctx, objID, vstoreId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveDataTurboShareUser",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).RemoveDataTurboShareUser), ctx, objID, vstoreId)
+}
+
+// SetSystemInfo mocks base method.
+func (m *MockOceanASeriesClientInterface) SetSystemInfo(ctx context.Context) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SetSystemInfo", ctx)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// SetSystemInfo indicates an expected call of SetSystemInfo.
+func (mr *MockOceanASeriesClientInterfaceMockRecorder) SetSystemInfo(ctx any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetSystemInfo",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).SetSystemInfo), ctx)
 }
 
 // UpdateFileSystem mocks base method.
-func (m *MockOceanASeriesClientInterface) UpdateFileSystem(ctx context.Context, fsID string, params map[string]any) error {
+func (m *MockOceanASeriesClientInterface) UpdateFileSystem(ctx context.Context, fsID string,
+	params map[string]any) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateFileSystem", ctx, fsID, params)
 	ret0, _ := ret[0].(error)
@@ -830,11 +922,13 @@ func (m *MockOceanASeriesClientInterface) UpdateFileSystem(ctx context.Context, 
 // UpdateFileSystem indicates an expected call of UpdateFileSystem.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) UpdateFileSystem(ctx, fsID, params any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateFileSystem", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).UpdateFileSystem), ctx, fsID, params)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateFileSystem",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).UpdateFileSystem), ctx, fsID, params)
 }
 
 // UpdateQos mocks base method.
-func (m *MockOceanASeriesClientInterface) UpdateQos(ctx context.Context, qosID, vStoreID string, params map[string]any) error {
+func (m *MockOceanASeriesClientInterface) UpdateQos(ctx context.Context, qosID, vStoreID string,
+	params map[string]any) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateQos", ctx, qosID, vStoreID, params)
 	ret0, _ := ret[0].(error)
@@ -844,7 +938,8 @@ func (m *MockOceanASeriesClientInterface) UpdateQos(ctx context.Context, qosID, 
 // UpdateQos indicates an expected call of UpdateQos.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) UpdateQos(ctx, qosID, vStoreID, params any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateQos", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).UpdateQos), ctx, qosID, vStoreID, params)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateQos",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).UpdateQos), ctx, qosID, vStoreID, params)
 }
 
 // ValidateLogin mocks base method.
@@ -858,5 +953,6 @@ func (m *MockOceanASeriesClientInterface) ValidateLogin(ctx context.Context) err
 // ValidateLogin indicates an expected call of ValidateLogin.
 func (mr *MockOceanASeriesClientInterfaceMockRecorder) ValidateLogin(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ValidateLogin", reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).ValidateLogin), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ValidateLogin",
+		reflect.TypeOf((*MockOceanASeriesClientInterface)(nil).ValidateLogin), ctx)
 }

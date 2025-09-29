@@ -35,6 +35,7 @@ import (
 	cfg "github.com/Huawei/eSDK_K8S_Plugin/v4/csi/app/config"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/csi/backend/plugin"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/pkg/constants"
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/pkg/utils"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils/log"
 )
 
@@ -467,6 +468,12 @@ func Test_generatePathPrefixByProtocol(t *testing.T) {
 			wantPathPrefix: "[127::1]:/",
 		},
 		{
+			name:           "NFS domain name test",
+			protocol:       plugin.ProtocolNfs,
+			portals:        []string{"domain_name"},
+			wantPathPrefix: "domain_name:/",
+		},
+		{
 			name:           "DPC test",
 			protocol:       plugin.ProtocolDpc,
 			portals:        nil,
@@ -494,25 +501,25 @@ func Test_generatePathPrefixByProtocol_WithErrors(t *testing.T) {
 		name     string
 		protocol string
 		portals  []string
-		wantErr  error
+		wantErr  string
 	}{
 		{
 			name:     "nil portal test",
 			protocol: plugin.ProtocolNfs,
 			portals:  nil,
-			wantErr:  errors.New("no portal provided for NFS or NFS+ protocol"),
+			wantErr:  "no portal provided for NFS or NFS+ protocol",
 		},
 		{
 			name:     "invalid ip test",
 			protocol: plugin.ProtocolNfsPlus,
-			portals:  []string{"127::0:0::1"},
-			wantErr:  errors.New("portal [127::0:0::1] is not a valid ip address"),
+			portals:  []string{""},
+			wantErr:  "is invalid",
 		},
 		{
 			name:     "nil protocol test",
 			protocol: "",
 			portals:  []string{"127::1"},
-			wantErr:  errors.New("protocol [] is not supported"),
+			wantErr:  "protocol [] is not supported",
 		},
 	}
 
@@ -521,7 +528,7 @@ func Test_generatePathPrefixByProtocol_WithErrors(t *testing.T) {
 			// action
 			_, gotErr := generatePathPrefixByProtocol(tt.protocol, tt.portals)
 			// assert
-			assert.Equal(t, gotErr, tt.wantErr, "Test_generatePathPrefixByProtocol_WithErrors() "+
+			assert.ErrorContains(t, gotErr, tt.wantErr, "Test_generatePathPrefixByProtocol_WithErrors() "+
 				"failed, gotErr = %v, wantErr = %v", gotErr, tt.wantErr)
 		})
 	}
@@ -648,7 +655,7 @@ func Test_GetBackendConfig_DtfsMissingDeviceWWN(t *testing.T) {
 	// arrange
 	ctx := context.Background()
 	backendName := "dtfs_backend"
-	wantErr := "deviceWWN must be set"
+	wantErr := "get empty DeviceWWN"
 
 	// mock
 	patches := gomonkey.NewPatches()
@@ -659,7 +666,7 @@ func Test_GetBackendConfig_DtfsMissingDeviceWWN(t *testing.T) {
 				"protocol": constants.ProtocolDtfs,
 			},
 		}, nil
-	})
+	}).ApplyFuncReturn(utils.GetSBCTSpecificationByClaim, map[string]string{}, nil)
 
 	// act
 	gotCfg, gotErr := GetBackendConfig(ctx, backendName)
@@ -856,11 +863,10 @@ func Test_GetBackendConfig_SuccessDtfsProtocol(t *testing.T) {
 		return map[string]interface{}{
 			"storage": expectedStorage,
 			"parameters": map[string]interface{}{
-				"protocol":  constants.ProtocolDtfs,
-				"deviceWWN": expectedWWN,
+				"protocol": constants.ProtocolDtfs,
 			},
 		}, nil
-	})
+	}).ApplyFuncReturn(utils.GetSBCTSpecificationByClaim, map[string]string{"DeviceWWN": expectedWWN}, nil)
 
 	// act
 	gotCfg, gotErr := GetBackendConfig(ctx, backendName)

@@ -2,6 +2,10 @@
 
 [Releases](https://github.com/Huawei/eSDK_K8S_Plugin/releases)
 
+## v4.9.0-POC
+
+- Added support for DME
+
 ## v4.8.0
 
 - Added support for OpenShift 4.18

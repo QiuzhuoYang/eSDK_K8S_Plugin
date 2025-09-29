@@ -204,6 +204,7 @@ func TestOceanstorASeriesPlugin_Init_Success(t *testing.T) {
 	defer mock.Reset()
 	mock.ApplyFuncReturn(client.NewClient, &client.OceanASeriesClient{}, nil).
 		ApplyMethodReturn(&base.RestClient{}, "Login", nil).
+		ApplyMethodReturn(&client.OceanASeriesClient{}, "SetSystemInfo", nil).
 		ApplyMethodReturn(&base.RestClient{}, "Logout")
 
 	// act
@@ -348,6 +349,7 @@ func TestOceanstorASeriesPlugin_UpdateBackendCapabilities(t *testing.T) {
 		"LocalDeviceSN": "test-sn",
 		"VStoreID":      "test-vstore-id",
 		"VStoreName":    "test-vstore-name",
+		"DeviceWWN":     "test-wwn",
 	}
 
 	// mock
@@ -356,6 +358,7 @@ func TestOceanstorASeriesPlugin_UpdateBackendCapabilities(t *testing.T) {
 	cli.EXPECT().GetDeviceSN().Return("test-sn")
 	cli.EXPECT().GetvStoreID().Return("test-vstore-id")
 	cli.EXPECT().GetvStoreName().Return("test-vstore-name")
+	cli.EXPECT().GetDeviceWWN().Return("test-wwn")
 
 	// act
 	gotCapabilities, gotSpecifications, gotErr := p.UpdateBackendCapabilities(ctx)

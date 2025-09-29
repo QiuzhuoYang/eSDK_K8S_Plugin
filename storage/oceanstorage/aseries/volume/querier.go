@@ -80,7 +80,7 @@ func (c *Querier) queryAndInjectFilesystemInfo() error {
 	if err != nil {
 		return err
 	}
-	if fs == nil {
+	if len(fs) == 0 {
 		return fmt.Errorf("filesystem %s does not exist", c.params.Name)
 	}
 

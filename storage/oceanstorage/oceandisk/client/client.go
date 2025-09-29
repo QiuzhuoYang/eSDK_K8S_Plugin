@@ -20,7 +20,10 @@ package client
 import (
 	"context"
 
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage/oceanstorage/base"
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils"
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils/log"
 )
 
 // OceandiskClientInterface defines interfaces for base client operations
@@ -41,6 +44,7 @@ type OceandiskClientInterface interface {
 	GetBackendID() string
 	GetDeviceSN() string
 	GetStorageVersion() string
+	SetSystemInfo(ctx context.Context) error
 }
 
 // OceandiskClient implements OceandiskClientInterface
@@ -58,7 +62,7 @@ type OceandiskClient struct {
 }
 
 // NewClient inits a new client of oceandisk client
-func NewClient(ctx context.Context, param *base.NewClientConfig) (*OceandiskClient, error) {
+func NewClient(ctx context.Context, param *storage.NewClientConfig) (*OceandiskClient, error) {
 	restClient, err := base.NewRestClient(ctx, param)
 	if err != nil {
 		return nil, err
@@ -75,4 +79,21 @@ func NewClient(ctx context.Context, param *base.NewClientConfig) (*OceandiskClie
 		SystemClient:          &base.SystemClient{RestClientInterface: restClient},
 		RestClient:            restClient,
 	}, nil
+}
+
+// SetSystemInfo set system info
+func (cli *OceandiskClient) SetSystemInfo(ctx context.Context) error {
+	system, err := cli.GetSystem(ctx)
+	if err != nil {
+		return err
+	}
+
+	storagePointVersion, ok := utils.GetValue[string](system, "pointRelease")
+	if ok {
+		cli.StorageVersion = storagePointVersion
+	}
+
+	log.AddContext(ctx).Infof("backend type [%s], backend [%s], storage version [%s]",
+		cli.Storage, cli.BackendID, cli.StorageVersion)
+	return nil
 }

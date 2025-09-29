@@ -20,7 +20,10 @@ package client
 import (
 	"context"
 
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage/oceanstorage/base"
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils"
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils/log"
 )
 
 // OceanASeriesClientInterface defines interfaces for A-series client operations
@@ -35,7 +38,8 @@ type OceanASeriesClientInterface interface {
 
 	GetBackendID() string
 	GetDeviceSN() string
-	GetStorageVersion() string
+	GetDeviceWWN() string
+	SetSystemInfo(ctx context.Context) error
 }
 
 // OceanASeriesClient implements OceanASeriesClientInterface
@@ -46,10 +50,12 @@ type OceanASeriesClient struct {
 	*base.VStoreClient
 	*base.FilesystemClient
 	*base.RestClient
+
+	deviceWWN string
 }
 
 // NewClient inits a new client of oceanstor A-series client
-func NewClient(ctx context.Context, param *base.NewClientConfig) (*OceanASeriesClient, error) {
+func NewClient(ctx context.Context, param *storage.NewClientConfig) (*OceanASeriesClient, error) {
 	restClient, err := base.NewRestClient(ctx, param)
 	if err != nil {
 		return nil, err
@@ -63,4 +69,26 @@ func NewClient(ctx context.Context, param *base.NewClientConfig) (*OceanASeriesC
 		FilesystemClient:      &base.FilesystemClient{RestClientInterface: restClient},
 		RestClient:            restClient,
 	}, nil
+}
+
+// SetSystemInfo set system info
+func (cli *OceanASeriesClient) SetSystemInfo(ctx context.Context) error {
+	system, err := cli.GetSystem(ctx)
+	if err != nil {
+		return err
+	}
+
+	wwn, ok := utils.GetValue[string](system, "wwn")
+	if ok {
+		cli.deviceWWN = wwn
+	}
+
+	log.AddContext(ctx).Infof("backend type [%s], backend [%s], deviceWWN [%s]",
+		cli.Storage, cli.BackendID, cli.deviceWWN)
+	return nil
+}
+
+// GetDeviceWWN used for get device WWN
+func (cli *OceanASeriesClient) GetDeviceWWN() string {
+	return cli.deviceWWN
 }

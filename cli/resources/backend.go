@@ -612,10 +612,6 @@ func validateBackend(backend *BackendConfiguration) error {
 		}
 	}
 
-	if backend.Parameters.Protocol == constants.ProtocolDtfs && backend.Parameters.DeviceWWN == "" {
-		errs = append(errs, fmt.Errorf("deviceWWN must be provided when use %s protocol", constants.ProtocolDtfs))
-	}
-
 	if len(errs) > 0 {
 		return fmt.Errorf("validate backend %s failed, err: %w", backend.Name, errors.Join(errs...))
 	}

@@ -22,6 +22,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/storage/oceanstorage/base"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils"
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/utils/log"
@@ -132,7 +133,7 @@ func (cli *OceanstorClient) CreateFileSystem(ctx context.Context, params map[str
 	code := int64(resp.Error["code"].(float64))
 	if code == systemBusy || code == msgTimeOut {
 		for i := 0; i < 10; i++ {
-			time.Sleep(base.GetInfoWaitInternal)
+			time.Sleep(storage.GetInfoWaitInternal)
 			log.AddContext(ctx).Infof("Create filesystem timeout, try to get info. The %d time", i+1)
 			fsInfo, err := cli.GetFileSystemByName(ctx, params["name"].(string))
 			if err != nil || fsInfo == nil {

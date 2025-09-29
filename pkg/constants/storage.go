@@ -58,7 +58,11 @@ const (
 
 var (
 	// NasStorageTypes contains all of nas storage types
-	NasStorageTypes = []string{OceanStorNas, OceanStorDtree, FusionNas, FusionDTree, OceanStorASeriesNas}
+	NasStorageTypes = []string{OceanStorNas, OceanStorDtree, FusionNas, FusionDTree, OceanStorASeriesNas,
+		OceanStorASeriesNasDme}
+
+	// FusionstorageProtocol contains all of fusionstorage protocols supported
+	FusionstorageProtocol = []string{ProtocolIscsi, ProtocolScsi}
 )
 
 const (
@@ -79,6 +83,8 @@ const (
 	OceandiskSan = "oceandisk-san"
 	// OceanStorASeriesNas storage type is "oceanstor-a-series-nas"
 	OceanStorASeriesNas = "oceanstor-a-series-nas"
+	// OceanStorASeriesNasDme storage type is "oceanstor-a-series-nas-dme"
+	OceanStorASeriesNasDme = "oceanstor-a-series-nas-dme"
 	// FusionSan storage type is fusionstorage-san
 	FusionSan = "fusionstorage-san"
 	// FusionNas storage type is fusionstorage-nas
@@ -103,6 +109,10 @@ const (
 	ProtocolDpc = "dpc"
 	// ProtocolDtfs defines the dtfs protocol type, which stands for DataTurbo
 	ProtocolDtfs = "dtfs"
+	// ProtocolIscsi defines the iscsi protocol type
+	ProtocolIscsi = "iscsi"
+	// ProtocolScsi defines the scsi protocol type
+	ProtocolScsi = "scsi"
 
 	// AllSquash is the value of all squash configured on the StorageClass
 	AllSquash = "all_squash"
