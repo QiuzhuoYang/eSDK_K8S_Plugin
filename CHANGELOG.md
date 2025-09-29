@@ -2,7 +2,7 @@
 
 [Releases](https://github.com/Huawei/eSDK_K8S_Plugin/releases)
 
-## v4.9.0-POC
+## v4.10.0-poc
 
 - Added support for DME
 
