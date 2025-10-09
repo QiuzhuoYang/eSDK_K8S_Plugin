@@ -11,7 +11,6 @@ RELEASE_VER=RELEASE_VER
 ONLY_BIN=ONLY_BIN
 
 export GO111MODULE=on
-export GOPATH:=$(GOPATH):$(shell pwd)
 
 ifeq (${RELEASE_VER}, RELEASE_VER)
        export PACKAGE=eSDK_Huawei_Storage_Kubernetes_CSI_Plugin_V${VER}_${PLATFORM}_64
