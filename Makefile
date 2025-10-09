@@ -32,7 +32,7 @@ PREPARE:
 	mkdir -p ./${PACKAGE}/bin
 
 BUILD:
-go mod tidy
+	go mod tidy
 # usage: go build [-o output] [build flags] [packages]
 ifeq (${PLATFORM}, X86)
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./${PACKAGE}/bin/huawei-csi -ldflags="-s" -buildmode=pie ./csi
