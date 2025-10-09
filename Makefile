@@ -32,8 +32,6 @@ PREPARE:
 	mkdir -p ./${PACKAGE}/bin
 
 BUILD:
-	export GOPATH=$HOME/go
-	export PATH=$PATH:$GOPATH/bin
 	go mod tidy
 # usage: go build [-o output] [build flags] [packages]
 ifeq (${PLATFORM}, X86)
