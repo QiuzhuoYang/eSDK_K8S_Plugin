@@ -32,7 +32,7 @@ const snapshotDirInvisible = "invisible"
 // CreateDmeVolumeParameter is the parameter for creating dme volume
 type CreateDmeVolumeParameter struct {
 	SnapshotDirectoryVisibility string `json:"snapshotDirectoryVisibility"`
-	StoragePool                 string `json:"pool"`
+	StoragePool                 string `json:"storagepool"`
 	AuthClient                  string `json:"authClient"`
 	AuthUser                    string `json:"authUser"`
 	AllSquash                   string `json:"allSquash"`

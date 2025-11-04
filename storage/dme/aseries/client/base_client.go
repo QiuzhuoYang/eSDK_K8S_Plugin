@@ -44,7 +44,7 @@ const (
 
 const (
 	// DefaultParallelCount defines default parallel count
-	DefaultParallelCount int = 30
+	DefaultParallelCount int = 5
 
 	// MaxParallelCount defines max parallel count
 	MaxParallelCount int = 30

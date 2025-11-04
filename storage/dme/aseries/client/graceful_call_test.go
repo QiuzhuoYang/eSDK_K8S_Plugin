@@ -185,7 +185,8 @@ func Test_gracefulCallWithSync_Success(t *testing.T) {
 	patches := gomonkey.NewPatches()
 	defer patches.Reset()
 	patches.ApplyMethodReturn(mockCli, "Call", mockRespBody, nil).
-		ApplyMethodReturn(mockCli, "GetTaskInfos", []*Task{taskInfo}, nil)
+		ApplyMethodReturn(mockCli, "GetTaskInfos", []*Task{taskInfo}, nil).
+		ApplyFuncReturn(time.Sleep)
 
 	// act
 	gotErr := gracefulCallWithTaskWait(context.Background(), mockCli, "GET", "testUrl", nil)

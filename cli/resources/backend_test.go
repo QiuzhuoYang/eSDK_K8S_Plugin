@@ -24,6 +24,7 @@ import (
 	"testing"
 
 	"github.com/agiledragon/gomonkey/v2"
+	"github.com/stretchr/testify/assert"
 	"k8s.io/api/core/v1"
 
 	"github.com/Huawei/eSDK_K8S_Plugin/v4/cli/client"
@@ -88,4 +89,28 @@ func Test_createSecretWithUid_GetSecretFailed(t *testing.T) {
 	t.Cleanup(func() {
 		mock.Reset()
 	})
+}
+
+func TestBackend_setMaxClients_DMESuccess(t *testing.T) {
+	// arrange
+	backend := &Backend{}
+	backendConfig := &BackendConfiguration{StorageDeviceSN: "testSN", Storage: constants.OceanStorASeriesNas}
+
+	// act
+	backend.setMaxClients(backendConfig)
+
+	// assert
+	assert.Equal(t, config.DMEDefaultMaxClientThreads, backendConfig.MaxClientThreads)
+}
+
+func TestBackend_setMaxClients_Success(t *testing.T) {
+	// arrange
+	backend := &Backend{}
+	backendConfig := &BackendConfiguration{Storage: constants.OceanStorASeriesNas}
+
+	// act
+	backend.setMaxClients(backendConfig)
+
+	// assert
+	assert.Equal(t, config.DefaultMaxClientThreads, backendConfig.MaxClientThreads)
 }

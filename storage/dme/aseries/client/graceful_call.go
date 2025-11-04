@@ -32,8 +32,15 @@ import (
 const (
 	offLineCode     = "4012"
 	noAuthenticated = "4011"
-	maxRetryTimes   = 30
-	retryInterval   = time.Second
+
+	// maxRetryTime define the max retry duration of dme async task
+	maxRetryTime = 30 * time.Minute
+
+	// initialRetryInterval defines the initial retry interval of querying dme async task status
+	initialRetryInterval = 5 * time.Second
+
+	// maxRetryInterval defines the max retry interval of querying dme async task status
+	maxRetryInterval = 5 * time.Minute
 
 	// TaskStatusInit defines the init status of task
 	TaskStatusInit = 1
@@ -113,7 +120,8 @@ func gracefulCallWithTaskWait(ctx context.Context, cli BaseClientInterface, meth
 		return errors.New("run task failed with empty return")
 	}
 
-	for i := 0; i < maxRetryTimes; i++ {
+	retryInterval := initialRetryInterval
+	for i := 0 * time.Second; i < maxRetryTime; {
 		taskInfos, err := cli.GetTaskInfos(ctx, task.TaskID)
 		if err != nil {
 			return err
@@ -139,9 +147,20 @@ func gracefulCallWithTaskWait(ctx context.Context, cli BaseClientInterface, meth
 		}
 
 		time.Sleep(retryInterval)
+		i += retryInterval
+		retryInterval = calculateNextSleepTime(retryInterval, maxRetryInterval)
 	}
 
 	return fmt.Errorf("run task %s time out", task.TaskID)
+}
+
+func calculateNextSleepTime(currentInterval, maxInterval time.Duration) time.Duration {
+	nextInterval := currentInterval * 2
+	if nextInterval > maxInterval {
+		return maxInterval
+	}
+
+	return nextInterval
 }
 
 func gracefulCall[T any](ctx context.Context, cli BaseClientInterface, method, url string, reqData any) (*T, error) {

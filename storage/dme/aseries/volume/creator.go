@@ -31,6 +31,7 @@ import (
 )
 
 const (
+	quotaControlCode      = "429"
 	nfsShareReadWrite     = "read/write"
 	nfsShareWriteModeSync = "synchronization"
 	dpcShareReadWrite     = "read_and_write"
@@ -96,6 +97,12 @@ func (c *Creator) Create() (utils.Volume, error) {
 
 	err := tr.Commit()
 	if err != nil {
+		// If err is quota control err, return the error directly without rollback.
+		var errResp client.AuthError
+		if errors.As(err, &errResp) && errResp.Code == quotaControlCode {
+			return nil, fmt.Errorf("create filesystem failed with restful quota control: %w", err)
+		}
+
 		tr.Rollback()
 		return nil, err
 	}

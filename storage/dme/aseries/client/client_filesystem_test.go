@@ -25,6 +25,7 @@ import (
 	"net/http"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/agiledragon/gomonkey/v2"
 	"github.com/stretchr/testify/assert"
@@ -76,7 +77,8 @@ func TestFilesystemClient_UpdateFileSystem_Success(t *testing.T) {
 				StatusCode: 200,
 				Body:       io.NopCloser(bytes.NewBufferString(queryTaskResp)),
 			}, nil
-		})
+		}).
+		ApplyFuncReturn(time.Sleep)
 	defer patch.Reset()
 
 	// Mock
@@ -131,7 +133,8 @@ func TestFilesystemClient_DeleteFileSystem_Success(t *testing.T) {
 				StatusCode: 200,
 				Body:       io.NopCloser(bytes.NewBufferString(queryTaskResp)),
 			}, nil
-		})
+		}).
+		ApplyFuncReturn(time.Sleep)
 	defer patch.Reset()
 	// Mock
 	cli := &FilesystemClient{BaseClientInterface: getMockClient(200, "")}
@@ -302,7 +305,8 @@ func TestFilesystemClient_CreateFileSystem_Success(t *testing.T) {
 				StatusCode: 200,
 				Body:       io.NopCloser(bytes.NewBufferString(queryTaskResp)),
 			}, nil
-		})
+		}).
+		ApplyFuncReturn(time.Sleep)
 	defer patch.Reset()
 	param := CreateFilesystemParams{}
 	err := json.Unmarshal([]byte(createParam), &param)
@@ -371,7 +375,8 @@ func TestFilesystemClient_DeleteDataTurboShare_Success(t *testing.T) {
 				StatusCode: 200,
 				Body:       io.NopCloser(bytes.NewBufferString(queryTaskResp)),
 			}, nil
-		})
+		}).
+		ApplyFuncReturn(time.Sleep)
 	defer patch.Reset()
 
 	// Mock
@@ -474,7 +479,8 @@ func TestFilesystemClient_DeleteNfsShare_Success(t *testing.T) {
 				StatusCode: 200,
 				Body:       io.NopCloser(bytes.NewBufferString(queryTaskResp)),
 			}, nil
-		})
+		}).
+		ApplyFuncReturn(time.Sleep)
 	defer patch.Reset()
 
 	// Mock

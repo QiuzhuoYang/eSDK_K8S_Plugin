@@ -559,7 +559,11 @@ func (b *Backend) setBackendNamespace(configuration *BackendConfiguration) {
 func (b *Backend) setMaxClients(configuration *BackendConfiguration) {
 	// If not set, use the default max clients num
 	if configuration.MaxClientThreads == "" {
-		configuration.MaxClientThreads = config.DefaultMaxClientThreads
+		if configuration.Storage == constants.OceanStorASeriesNas && configuration.StorageDeviceSN != "" {
+			configuration.MaxClientThreads = config.DMEDefaultMaxClientThreads
+		} else {
+			configuration.MaxClientThreads = config.DefaultMaxClientThreads
+		}
 	}
 }
 
